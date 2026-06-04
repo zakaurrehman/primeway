@@ -45,10 +45,14 @@ export default function Ticker({ dark = false }: { dark?: boolean }) {
               {t.price}
             </span>
             <span
-              className={`inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[11px] font-semibold ${
-                t.up
-                  ? "bg-emerald-500/12 text-emerald-600"
-                  : "bg-rose-500/12 text-rose-600"
+              className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                dark
+                  ? t.up
+                    ? "bg-emerald-400/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
+                    : "bg-rose-400/20 text-rose-300 ring-1 ring-inset ring-rose-400/30"
+                  : t.up
+                    ? "bg-emerald-500/12 text-emerald-600"
+                    : "bg-rose-500/12 text-rose-600"
               }`}
             >
               {t.up ? (

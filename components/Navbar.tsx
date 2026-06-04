@@ -39,18 +39,26 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 py-3 sm:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
-          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl ring-1 ring-navy-800/10">
+          <span
+            className={`relative h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-white/95 ring-1 transition-colors ${
+              scrolled ? "ring-navy-800/10" : "ring-white/25"
+            }`}
+          >
             <Image src="/logo.png" alt={`${site.name} logo`} fill className="object-contain p-0.5" priority />
           </span>
           <span className="flex flex-col leading-none">
             <span
               className={`font-display text-[15px] font-extrabold tracking-tight transition-colors ${
-                scrolled ? "text-navy-900" : "text-navy-900"
+                scrolled ? "text-navy-900" : "text-white"
               }`}
             >
               PRIME WAY
             </span>
-            <span className="text-[11px] font-semibold tracking-[0.2em] text-brand-600">
+            <span
+              className={`text-[11px] font-semibold tracking-[0.2em] transition-colors ${
+                scrolled ? "text-brand-600" : "text-sky-300"
+              }`}
+            >
               CAPITAL
             </span>
           </span>
@@ -66,7 +74,9 @@ export default function Navbar() {
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     active
                       ? "text-brand-700"
-                      : "text-navy-800/80 hover:text-brand-700"
+                      : scrolled
+                        ? "text-navy-800/80 hover:text-brand-700"
+                        : "text-white/90 hover:text-white"
                   }`}
                 >
                   {active && (
@@ -86,9 +96,11 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={site.phoneHref}
-            className="flex items-center gap-2 text-sm font-semibold text-navy-800 transition-colors hover:text-brand-700"
+            className={`flex items-center gap-2 text-sm font-semibold transition-colors ${
+              scrolled ? "text-navy-800 hover:text-brand-700" : "text-white/90 hover:text-white"
+            }`}
           >
-            <Phone className="h-4 w-4 text-brand-600" />
+            <Phone className={`h-4 w-4 transition-colors ${scrolled ? "text-brand-600" : "text-sky-300"}`} />
             {site.phone}
           </a>
           <Link
