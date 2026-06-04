@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prime Way Capital — Website
 
-## Getting Started
+Official marketing website for **Prime Way Capital (Private) Limited** — an SECP‑registered
+investment & commodity futures firm based in Lahore, Pakistan.
 
-First, run the development server:
+Built with **Next.js 16 (App Router)**, **Tailwind CSS v4**, **Framer Motion** and **lucide-react**.
+Fully static, fast, SEO‑ready and optimised for deployment on **Vercel**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- Premium, animated design system based on the Prime Way Capital brand (navy / royal blue / gold)
+- Pages: **Home, About, Services, Markets, Contact** + custom 404
+- Live market ticker, animated stats counters, scroll reveals, scroll progress bar
+- Accessible mobile navigation, FAQ accordion, contact form (opens email pre‑filled)
+- Floating WhatsApp button
+- SEO: metadata, Open Graph, JSON‑LD structured data, `sitemap.xml`, `robots.txt`
+
+## 🧠 Editing content
+
+**All text, services, markets, contact details and links live in one file:**
+
+```
+lib/site.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Change a phone number, add a service, update the address — edit it there and it updates everywhere.
+Logo files live in `public/logo.png` and `public/logo-full.png`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> Tip: set the real values for `email` and the `socials` URLs in `lib/site.ts` before launch.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💻 Run locally
 
-## Learn More
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Requires Node.js 20.9+.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push this `website` folder to a GitHub repository.
+2. Go to [vercel.com/new](https://vercel.com/new) and **Import** the repo.
+3. Vercel auto‑detects Next.js — just click **Deploy** (no settings needed).
+4. After the first deploy, add your custom domain (`primewaycapital.co`) under
+   **Project → Settings → Domains**, and point your DNS as Vercel instructs.
 
-## Deploy on Vercel
+Alternatively, deploy from this folder with the CLI:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm i -g vercel
+vercel        # preview deploy
+vercel --prod # production deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Structure
+
+```
+app/            Pages (home, about, services, markets, contact), layout, SEO
+components/     Navbar, Footer, Hero, Ticker, ServicesGrid, MarketsGrid, FAQ, ...
+lib/site.ts    ← single source of truth for all content
+public/         Logo + assets
+```
+
+---
+
+© Prime Way Capital (Private) Limited. Trading in futures and leveraged products carries a high
+level of risk and may not be suitable for all investors.

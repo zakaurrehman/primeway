@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand palette — derived from the Prime Way Capital logo */
+  --color-navy-950: #05172c;
+  --color-navy-900: #081f3a;
+  --color-navy-800: #0e2a4d;
+  --color-navy-700: #143a63;
+  --color-navy-600: #1c4d7e;
+  --color-brand-700: #1657c4;
+  --color-brand-600: #1e6fe8;
+  --color-brand-500: #2d7ff9;
+  --color-brand-400: #5a9dfb;
+  --color-sky-300: #8fc1f1;
+  --color-sky-200: #c2dffa;
+  --color-sky-100: #e6f1fd;
+  --color-gold-500: #d8a93c;
+  --color-gold-400: #e6bd55;
+  --color-gold-300: #f0d28a;
+  --color-ink: #0c1b2e;
+  --color-muted: #5b6b80;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
+
+  --shadow-card: 0 1px 2px rgba(8, 31, 58, 0.06), 0 12px 28px -12px rgba(8, 31, 58, 0.18);
+  --shadow-glow: 0 0 0 1px rgba(45, 127, 249, 0.18), 0 24px 60px -20px rgba(30, 111, 232, 0.45);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: var(--color-ink);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: rgba(14, 42, 77, 0.10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-brand-500);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--color-sky-100); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-brand-600), var(--color-navy-700));
+  border-radius: 99px;
+  border: 2px solid var(--color-sky-100);
+}
+
+.font-display { font-family: var(--font-display), system-ui, sans-serif; }
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--color-brand-500), var(--color-sky-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(110deg, var(--color-gold-300), var(--color-gold-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.glass-dark {
+  background: rgba(8, 31, 58, 0.55);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(45, 127, 249, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 127, 249, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mesh-hero {
+  background:
+    radial-gradient(60% 80% at 15% 10%, rgba(45, 127, 249, 0.35) 0%, transparent 55%),
+    radial-gradient(50% 70% at 90% 20%, rgba(216, 169, 60, 0.18) 0%, transparent 55%),
+    radial-gradient(80% 90% at 70% 100%, rgba(20, 58, 99, 0.6) 0%, transparent 60%),
+    linear-gradient(160deg, var(--color-navy-950), var(--color-navy-800));
+}
+
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+.card-hover {
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease, border-color .45s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
